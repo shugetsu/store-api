@@ -58,7 +58,7 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
-    imagePrefixPath: 'http://127.0.0.1:7001/resource/images'
+    imagePrefixPath: 'http://yu-yin.xin:8001/resource/images'
   }
 
   return {
