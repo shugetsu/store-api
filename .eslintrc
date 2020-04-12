@@ -1,0 +1,12 @@
+{
+  "extends": "eslint-config-egg",
+  "rules": {
+    "strict": 0,
+    "no-unused-vars": 0,
+    "semi": 0,
+    "comma-dangle": 0,
+    "array-bracket-spacing": 0,
+    "object-curly-spacing": 0,
+    "jsdoc/check-tag-names": "off"
+  }
+}
