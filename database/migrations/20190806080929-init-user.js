@@ -5,10 +5,10 @@ module.exports = {
     const { INTEGER, DATE, STRING } = Sequelize;
     await queryInterface.createTable('user', {
       id: { type: INTEGER(11), primaryKey: true, allowNull: false, autoIncrement: true },
-      unionid: { type: STRING(50), unique: true, allowNull: false, comment: 'unionid' },
+      openid: { type: STRING(50), unique: true, allowNull: false, comment: 'openid' },
       nickname: { type: STRING(50), defaultValue: null, comment: '昵称' },
       extend: { type: STRING(255), defaultValue: null, comment: '扩展' },
-      delete_at: { type: DATE, defaultValue: null },
+      deleted_at: { type: DATE, defaultValue: null },
       created_at: { type: DATE, defaultValue: null },
       updated_at: { type: DATE, defaultValue: null },
     });

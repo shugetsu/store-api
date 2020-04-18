@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "store",
+    "username": "root",
     "password": "123456",
     "database": "sotre_development",
-    "host": "101.132.104.10",
+    "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
   },
   "test": {
-    "username": "store",
+    "username": "root",
     "password": "123456",
     "database": "sotre_test",
-    "host": "101.132.104.10",
+    "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
   },
   "production": {
-    "username": "store",
+    "username": "root",
     "password": "123456",
     "database": "sotre_production",
-    "host": "101.132.104.10",
+    "host": "127.0.0.1",
     "port": 3306,
     "dialect": "mysql"
   }

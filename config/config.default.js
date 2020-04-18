@@ -22,6 +22,13 @@ module.exports = appInfo => {
     match: '/api'
   }
 
+  // 关闭egg 安全威胁 SSRF 的防范
+  config.security = {
+    csrf: {
+      enable: false
+    }
+  }
+
   // 配置静态目录
   config.static = {
     prefix: '/resource',
@@ -38,7 +45,7 @@ module.exports = appInfo => {
   config.redis = {
     client: {
       port: 6379,
-      host: '101.132.104.10',
+      host: '127.0.0.1',
       password: '123456',
       db: 0
     }
@@ -47,18 +54,17 @@ module.exports = appInfo => {
   // sequelize 配置
   config.sequelize = {
     dialect: 'mysql',
-    username: 'store',
+    username: 'root',
     password: '123456',
     database: 'sotre_development',
-    host: '101.132.104.10',
+    host: '127.0.0.1',
     port: 3306,
     timezone: '+08:00'
   }
 
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
-    imagePrefixPath: 'http://yu-yin.xin:8001/resource/images'
+    imagePrefixPath: 'http://127.0.0.1:7001/resource/images'
   }
 
   return {

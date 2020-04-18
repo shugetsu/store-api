@@ -1,5 +1,3 @@
-'use strict';
-
 /**
 200 成功
 999 未知错误
@@ -36,10 +34,9 @@
 80001 订单中的商品不存在，可能已被删除
 80002 订单还未支付，却尝试发货
 80003 订单已支付过
+*/
 
- */
 const ExceptionTypes = {
-
   SERVER: { status: 500, code: 999, msg: '服务器内部错误' },
   PARAMETER_ERROR: { status: 400, code: 10000, msg: '参数错误' },
   RESOURCE_NOT_FOUND: { status: 404, code: 10001, msg: '资源未找到' },
@@ -67,9 +64,10 @@ const ExceptionTypes = {
   USER_NOT_FOUND: { status: 200, code: 60000, msg: '用户不存在' },
   USER_ADD_ERROR: { status: 200, code: 60001, msg: '添加用户失败' },
   USER_UPDATE_ERROR: { status: 200, code: 60002, msg: '更新用户失败' },
-  ADDERSS_NOT_FOUND: { status: 200, code: 60003, msg: '地址不存在' },
-  ADDERSS_ADD_ERROR: { status: 200, code: 60004, msg: '添加地址失败' },
-  ADDERSS_UPDATE_ERROR: { status: 200, code: 60005, msg: '更新地址失败' },
+  USER_ADDERSS_NOT_FOUND: { status: 200, code: 60003, msg: '用户地址不存在' },
+  USER_ADDERSS_ADD_ERROR: { status: 200, code: 60004, msg: '用户地址添加失败' },
+  USER_ADDERSS_UPDATE_ERROR: { status: 200, code: 60005, msg: '用户地址更新失败' },
+  USER_ADDERSS_IS_EXIST: { status: 200, code: 60006, msg: '添加失败，用户地址已存在' },
 
   ORDER_NOT_FOUND: { status: 200, code: 80000, msg: '订单不存在' },
   ORDER_PRODUCT_NOT_FOUND: { status: 200, code: 80001, msg: '下单失败，订单中的商品不存在，可能已被删除' },

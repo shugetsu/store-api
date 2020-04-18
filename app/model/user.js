@@ -11,11 +11,11 @@ module.exports = app => {
       autoIncrement: true,
       field: 'id'
     },
-    unionid: {
+    openid: {
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: true,
-      field: 'unionid'
+      field: 'openid'
     },
     nickname: {
       type: DataTypes.STRING(50),
@@ -27,10 +27,10 @@ module.exports = app => {
       allowNull: true,
       field: 'extend'
     },
-    deleteAt: {
+    deletedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      field: 'delete_at'
+      field: 'deleted_at'
     },
     createdAt: {
       type: DataTypes.DATE,

@@ -8,7 +8,6 @@ module.exports = {
       user_id: { type: INTEGER(11), allowNull: false, comment: '外键: 用户id, 关联user表' },
       name: { type: STRING(30), allowNull: false, comment: '收货人姓名' },
       mobile: { type: STRING(20), allowNull: false, comment: '手机号码' },
-      default: { type: BOOLEAN, allowNull: false, defaultValue: 0, comment: '是否是默认地址, 0否1是' },
       province: { type: STRING(20), allowNull: false, comment: '省' },
       city: { type: STRING(20), allowNull: false, comment: '市' },
       country: { type: STRING(20), allowNull: false, comment: '区' },

@@ -17,4 +17,12 @@ module.exports = app => {
 
   // category
   router.get('/api/client/v1/category/getProductCategoryList', clientV1.category.getProductCategoryList)
+
+  // token
+  router.get('/api/client/v1/token/getToken', clientV1.token.getToken)
+
+  // userAddress
+  router.get('/api/client/v1/userAddress/getUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.getUserAddress)
+  router.post('/api/client/v1/userAddress/addUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.addUserAddress)
+  router.post('/api/client/v1/userAddress/updateUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.updateUserAddress)
 }

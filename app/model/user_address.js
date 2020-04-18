@@ -26,12 +26,6 @@ module.exports = app => {
       allowNull: false,
       field: 'mobile'
     },
-    default: {
-      type: DataTypes.INTEGER(1),
-      allowNull: false,
-      defaultValue: '0',
-      field: 'default'
-    },
     province: {
       type: DataTypes.STRING(20),
       allowNull: false,
