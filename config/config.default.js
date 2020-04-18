@@ -41,23 +41,13 @@ module.exports = appInfo => {
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
   }
 
-  // 配置 redis
-  config.redis = {
-    client: {
-      port: 6379,
-      host: '127.0.0.1',
-      password: '123456',
-      db: 0
-    }
-  }
-
   // sequelize 配置
   config.sequelize = {
     dialect: 'mysql',
-    username: 'root',
+    username: 'store',
     password: '123456',
     database: 'sotre_development',
-    host: '127.0.0.1',
+    host: '101.132.104.10',
     port: 3306,
     timezone: '+08:00'
   }
