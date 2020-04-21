@@ -8,18 +8,18 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
+    "username": "store",
     "password": "123456",
     "database": "sotre_test",
-    "host": "127.0.0.1",
+    "host": "101.132.104.10",
     "port": 3306,
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
+    "username": "store",
     "password": "123456",
     "database": "sotre_production",
-    "host": "127.0.0.1",
+    "host": "101.132.104.10",
     "port": 3306,
     "dialect": "mysql"
   }
