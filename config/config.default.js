@@ -12,6 +12,13 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1586241543263_520'
 
+  config.cluster = {
+    https: {
+      key: path.join(appInfo.baseDir, 'app/public/ssl/3801191_www.yu-yin.xin.key'),
+      cert: path.join(appInfo.baseDir, 'app/public/ssl/3801191_www.yu-yin.xin.pem')
+    }
+  }
+
   // 中间件
   config.middleware = [
     'errorHandler'

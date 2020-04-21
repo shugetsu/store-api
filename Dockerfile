@@ -5,4 +5,4 @@ ADD . /home/app
 
 WORKDIR /home/app
 
-CMD npx egg-scripts start --port=7001 --title=store-api
+CMD npx egg-scripts start --title=store-api

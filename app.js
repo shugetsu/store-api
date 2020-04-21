@@ -14,4 +14,5 @@ module.exports = app => {
     USER: 16,
     ADMIN: 32
   }
+
 }

@@ -36,7 +36,7 @@ module.exports = {
   verifyToken(token) {
     const { ctx } = this
     try {
-      const cert = fs.readFileSync(path.join(__dirname, '../public/rsa_public_key.pem')) // 私钥
+      const cert = fs.readFileSync(path.join(__dirname, '../public/jwt/rsa_public/jwt_key.pem')) // 私钥
       const result = jwt.verify(token, cert, { algorithms: 'RS256' })
       return result
     } catch (err) {
@@ -47,7 +47,7 @@ module.exports = {
   createToken(data) {
     const { ctx } = this
     try {
-      const cert = fs.readFileSync(path.join(__dirname, '../public/rsa_private_key.pem')) // 公钥
+      const cert = fs.readFileSync(path.join(__dirname, '../public/jwt/rsa_private_key.pem')) // 公钥
       const token = jwt.sign(JSON.stringify(data), cert, { algorithm: 'RS256' })
       return token
     } catch (err) {
