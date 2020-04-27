@@ -28,7 +28,11 @@ module.exports = appInfo => {
     database: 'sotre_production',
     host: '101.132.104.10',
     port: 3306,
-    timezone: '+08:00'
+    timezone: '+08:00',
+    dialectOptions: {
+      dateStrings: true,
+      typeCast: true
+    }
   }
 
   // add your user config here

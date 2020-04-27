@@ -10,8 +10,7 @@ class AddressController extends Controller {
    */
   async getUserAddress() {
     const { ctx } = this
-    const token = ctx.header.token
-    const userId = ctx.helper.getUserId(token)
+    const userId = ctx.helper.getUserId()
     const result = await ctx.service.userAddress.findUserAddress(userId)
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.USER_ADDERSS_NOT_FOUND)
@@ -27,8 +26,7 @@ class AddressController extends Controller {
    */
   async addUserAddress() {
     const { ctx } = this
-    const token = ctx.header.token
-    const userId = ctx.helper.getUserId(token)
+    const userId = ctx.helper.getUserId()
     const { name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, {
       name: [{ required: true, message: 'name不能为空' }],
       mobile: [{ required: true, message: 'mobile不能为空' }],
@@ -52,8 +50,7 @@ class AddressController extends Controller {
    */
   async updateUserAddress() {
     const { ctx } = this
-    const token = ctx.header.token
-    const userId = ctx.helper.getUserId(token)
+    const userId = ctx.helper.getUserId()
     const { id, name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, {
       id: [{ required: true, message: 'id不能为空' }, { message: 'id必须是正整数', pattern: /^[0-9]+$/ }],
       name: [{ required: true, message: 'name不能为空' }],

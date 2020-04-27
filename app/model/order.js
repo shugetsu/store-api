@@ -1,7 +1,7 @@
 /* indent size: 2 */
 
 module.exports = app => {
-  const DataTypes = app.Sequelize;
+  const DataTypes = app.Sequelize
 
   const Model = app.model.define('order', {
     id: {
@@ -91,8 +91,15 @@ module.exports = app => {
   });
 
   Model.associate = function() {
-
+    app.model.Order.belongsToMany(app.model.Product, {
+      through: app.model.OrderProduct,
+      foreignKey: 'orderId'
+    })
+    app.model.Product.belongsToMany(app.model.Order, {
+      through: app.model.OrderProduct,
+      foreignKey: 'productId'
+    })
   }
 
-  return Model;
-};
+  return Model
+}

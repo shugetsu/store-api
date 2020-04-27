@@ -8,6 +8,7 @@ module.exports = {
     const { ctx } = this
     if (token) {
       const tokenContent = this.verifyToken(token)
+      console.log(tokenContent)
       if (tokenContent) {
         const currentTime = Math.floor(Date.now() / 1000)
         if (tokenContent.expires >= currentTime) {
@@ -36,7 +37,7 @@ module.exports = {
   verifyToken(token) {
     const { ctx } = this
     try {
-      const cert = fs.readFileSync(path.join(__dirname, '../public/jwt/rsa_public/jwt_key.pem')) // 私钥
+      const cert = fs.readFileSync(path.join(__dirname, '../public/jwt/rsa_public_key.pem')) // 私钥
       const result = jwt.verify(token, cert, { algorithms: 'RS256' })
       return result
     } catch (err) {
@@ -54,7 +55,10 @@ module.exports = {
       ctx.throwException(ctx.ExceptionTypes.AUTHORIZATION_TOKEN_GENERATE_ERROR)
     }
   },
-  getUserId(token) {
+  // 获取用户id
+  getUserId() {
+    const { ctx} = this
+    const token = ctx.header.token
     const userInfo = this.verifyToken(token)
     return userInfo.userId
   }

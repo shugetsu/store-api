@@ -49,7 +49,7 @@ const ExceptionTypes = {
   AUTHORIZATION_USER_DATA_DECODE_ERROR: { status: 200, code: 10007, msg: '授权失败, 用户数据解密错误' },
   AUTHORIZATION_TOKEN_EXPIRE: { status: 200, code: 10008, msg: '认证失败, 令牌已过期' },
   AUTHORIZATION_TOKEN_INVALID: { status: 200, code: 10009, msg: '认证失败, 令牌无效' },
-  AUTHORIZATION_TOKEN_LOSE_EFFICACY: { status: 200, code: 100010, msg: '认证失败, 令牌已失效' },
+  AUTHORIZATION_TOKEN_LOSE_EFFICACY: { status: 200, code: 10010, msg: '认证失败, 令牌已失效' },
   INSUFFICIENT_PERMISSION: { status: 200, code: 10011, msg: '权限不足' },
   WECHAT_SERVICE_INTERFACE_ERROR: { status: 200, code: 10012, msg: '微信服务接口调用失败' },
 
@@ -75,7 +75,7 @@ const ExceptionTypes = {
   ORDER_ERROR_NOT_FOUND_USER_ADDRESS: { status: 200, code: 80003, msg: '下单失败，用户地址找不到' },
   ORDER_ERROR_PRODUCT_STOCK_INSUFFICIENT: { status: 200, code: 80004, msg: '下单失败，商品库存不足' },
   ORDER_NONPAYMENT_ATTEMPT_DELIVER_GOODS: { status: 200, code: 80005, msg: '订单还未支付，却尝试发货' },
-  ORDER_ALREADY_PAID: { status: 200, code: 80006, msg: '订单已支付过' },
-};
+  ORDER_ALREADY_PAID: { status: 200, code: 80006, msg: '订单已支付过' }
+}
 
-module.exports = ExceptionTypes;
+module.exports = ExceptionTypes

@@ -7,9 +7,11 @@ const ExceptionTypes = require('../exception/exception_types')
 module.exports = {
 
   // 成功响应内容
-  successResponse(data, msg = 'SUCCESS') {
-    this.status = 200
-    this.body = { code: 200, msg, data }
+  successResponse(data, option = {}) {
+    this.status = option.status || 200
+    const code = 200
+    const msg = option.msg || 'SUCCESS'
+    this.body = Object.assign({ code, msg, data }, option)
   },
 
   // 所有异常类型

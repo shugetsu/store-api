@@ -90,6 +90,7 @@ module.exports = app => {
       foreignKey: 'productId',
       sourceKey: 'id'
     })
+
   }
 
   return Model

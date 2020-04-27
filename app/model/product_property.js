@@ -47,9 +47,7 @@ module.exports = app => {
     timestamps: true
   })
 
-  Model.associate = function() {
-
-  }
+  Model.associate = function() {}
 
   return Model
 }

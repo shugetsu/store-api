@@ -25,4 +25,8 @@ module.exports = app => {
   router.get('/api/client/v1/userAddress/getUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.getUserAddress)
   router.post('/api/client/v1/userAddress/addUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.addUserAddress)
   router.post('/api/client/v1/userAddress/updateUserAddress', app.middleware.jwtScopeUser(), clientV1.userAddress.updateUserAddress)
+
+  // order
+  router.post('/api/client/v1/order/placeOrder', app.middleware.jwtScopeUser(), clientV1.order.placeOrder)
+  router.get('/api/client/v1/order/getOrderList', app.middleware.jwtScopeUser(), clientV1.order.getOrderList)
 }
