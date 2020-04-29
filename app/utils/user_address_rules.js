@@ -9,7 +9,7 @@ const rules = {
     province: { validator: valid.required() },
     city: { validator: valid.required() },
     country: { validator: valid.required() },
-    detail: { validator: valid.required() },
+    detail: { validator: valid.required() }
   },
   create: {
     name: { validator: valid.required() },
@@ -17,8 +17,8 @@ const rules = {
     province: { validator: valid.required() },
     city: { validator: valid.required() },
     country: { validator: valid.required() },
-    detail: { validator: valid.required() },
-  },
+    detail: { validator: valid.required() }
+  }
 }
 
 module.exports = rules

@@ -3,6 +3,7 @@ const orderRules = require('../../../utils/order_rules')
 const pagingRules = require('../../../utils/paging_rules')
 
 class OrderController extends Controller {
+
   /**
    * 下单
    * @url /api/client/v1/order/placeOrder

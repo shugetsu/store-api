@@ -2,6 +2,7 @@ const Controller = require('egg').Controller
 const valid = require('../../../utils/valid')
 
 class BannerController extends Controller {
+
   /**
    * 获取幻灯片
    * @url /api/client/v1/banner/getBannerById
