@@ -109,6 +109,7 @@ class Order extends Service {
     const productStatus = {
       id: null,
       name: '',
+      price: 0,
       count: 0,
       mainImgUrl: '',
       totalPrice: 0,
@@ -132,6 +133,7 @@ class Order extends Service {
 
     productStatus.id = products[index].id
     productStatus.name = products[index].name
+    productStatus.price = products[index].price
     productStatus.count = oCount
     productStatus.mainImgUrl = products[index].mainImgUrl
     productStatus.totalPrice = products[index].price * oCount
@@ -145,11 +147,15 @@ class Order extends Service {
   // 获取订单快照
   async _getSnapOrder(addressId, status, products) {
     const { ctx } = this
+    const userAddress = await ctx.service.userAddress.findByAddressId(addressId)
+    if (!userAddress) {
+      ctx.throwException(ctx.ExceptionTypes.USER_ADDERSS_NOT_FOUND)
+    }
     const snap = {
       orderPrice: status.orderPrice,
       totalCount: status.totalCount,
       productsStatus: status.productsStatus,
-      snapAddress: await ctx.service.userAddress.findByAddressId(addressId),
+      snapAddress: userAddress,
       snapName: status.productsStatus[0].name,
       snapSpecification: status.productsStatus[0].specification,
       snapImg: status.productsStatus[0].mainImgUrl
