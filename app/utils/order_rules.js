@@ -2,7 +2,7 @@
 const valid = require('./valid')
 
 const rules = {
-  addressId: [{ validator: valid.empty() }, { validator: valid.integer() }],
+  addressId: [{ validator: valid.required() }, { validator: valid.integer() }],
   products: {
     validator(rule, value, callback, options) {
       if (valid.isEmpty(value)) {

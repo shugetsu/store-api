@@ -36,6 +36,7 @@ class Theme extends Service {
           as: 'headImage'
         },
         {
+          attributes: { exclude: ['deletedAt'] },
           model: ctx.model.Product
         }
       ]

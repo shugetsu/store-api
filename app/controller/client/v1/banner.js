@@ -11,11 +11,11 @@ class BannerController extends Controller {
   async getBannerById() {
     const { ctx } = this
     const { id } = await ctx.validate(ctx.query, {
-      id: [{ validator: valid.empty() }, { validator: valid.integer() }]
+      id: [{ validator: valid.required() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.banner.findByBannerId(id)
     if (!result) {
-      ctx.throwException(ctx.ExceptionTypes.BANNER_HOME_TOP_NOT_FOUND)
+      ctx.throwException(ctx.ExceptionTypes.BANNER_NOT_FOUND)
     }
     ctx.successResponse(result)
   }

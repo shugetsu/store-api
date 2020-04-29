@@ -19,7 +19,7 @@ class Product extends Service {
     const category = await ctx.model.Category.findByPk(categoryId)
     if (category) {
       const categoryProductList = await ctx.model.Product.findAll({
-        // attributes: { exclude: [ 'created_at', 'updated_at', 'deleted_at', 'img_id' ] },
+        attributes: { exclude: ['deletedAt'] },
         where: {
           category_id: categoryId,
         },
@@ -35,6 +35,7 @@ class Product extends Service {
     const productDetail = await ctx.model.Product.findByPk(productId, {
       include: [
         {
+          attributes: { exclude: ['deletedAt'] },
           model: ctx.model.ProductImage,
           include: {
             model: ctx.model.Image,
@@ -43,6 +44,7 @@ class Product extends Service {
           }
         },
         {
+          attributes: { exclude: ['deletedAt'] },
           model: ctx.model.ProductProperty
         }
       ]

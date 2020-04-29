@@ -12,7 +12,7 @@ class ProductController extends Controller {
   async getNewProductList() {
     const { ctx } = this
     const { count } = await ctx.validate(ctx.query, {
-      count: [{ validator: valid.empty() }, { validator: valid.integer() }]
+      count: [{ validator: valid.required() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.product.findNewProductList(count)
     ctx.successResponse(result)
@@ -27,7 +27,7 @@ class ProductController extends Controller {
   async getProductDetail() {
     const { ctx } = this
     const { id } = await ctx.validate(ctx.query, {
-      id: [{ validator: valid.empty() }, { validator: valid.integer() }]
+      id: [{ validator: valid.required() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.product.findProductDetail(id)
     if (!result) {

@@ -5,8 +5,8 @@ class Order extends Service {
   // 下单
   async placeOrder(userId, addressId, oProducts) {
     const { ctx } = this
-    const products = await this.getProductsByOrder(oProducts)
-    const status = await this.getOrderStatus(products, oProducts)
+    const products = await this._getProductsByOrder(oProducts)
+    const status = await this._getOrderStatus(products, oProducts)
     // 1.检查订单中的商品是否存在
     if (status.noProductsIds.length) {
       let msg = '下单失败，订单中id为' + status.noProductsIds.join('、')
@@ -33,8 +33,8 @@ class Order extends Service {
       ctx.throwException(ctx.ExceptionTypes.PRODUCT_STOCK_INSUFFICIENT, { msg: status.noPassProductsStatus })
     }
     // 4.创建订单
-    const snapOrder = await this.getSnapOrder(addressId, status, products)
-    const order = await this.createOrder(userId, oProducts, snapOrder)
+    const snapOrder = await this._getSnapOrder(addressId, status, products)
+    const order = await this._createOrder(userId, oProducts, snapOrder)
     return order
   }
 
@@ -49,6 +49,7 @@ class Order extends Service {
       limit: size,
       distinct: true,
       include: {
+        attributes: { exclude: ['deletedAt'] },
         model: ctx.model.Product
       }
     })
@@ -56,7 +57,7 @@ class Order extends Service {
   }
 
   // 获取订单的真实商品
-  async getProductsByOrder(oProducts) {
+  async _getProductsByOrder(oProducts) {
     const { ctx, app } = this
     const { Op } = app.Sequelize
     const productIds = []
@@ -74,7 +75,7 @@ class Order extends Service {
   }
 
   // 获取订单的状态(库存量，订单总价格等...)
-  async getOrderStatus(products, oProducts) {
+  async _getOrderStatus(products, oProducts) {
     const status = {
       pass: true, // 所有商品是否有库存
       orderPrice: 0, // 所有商品的总价格
@@ -87,7 +88,7 @@ class Order extends Service {
     for (let i = 0; i < oProducts.length; i++) {
       const oId = oProducts[i].productId
       const oCount = oProducts[i].count
-      const productStatus = await this.getProductStatus(oId, oCount, products)
+      const productStatus = await this._getProductStatus(oId, oCount, products)
       if (!productStatus.haveStock) {
         status.pass = false
         status.noPassProductsNames.push(productStatus.name)
@@ -103,7 +104,7 @@ class Order extends Service {
   }
 
   // 获取商品的状态
-  async getProductStatus(oId, oCount, products) {
+  async _getProductStatus(oId, oCount, products) {
     let index = -1
     const productStatus = {
       id: null,
@@ -142,7 +143,7 @@ class Order extends Service {
   }
 
   // 获取订单快照
-  async getSnapOrder(addressId, status, products) {
+  async _getSnapOrder(addressId, status, products) {
     const { ctx } = this
     const snap = {
       orderPrice: status.orderPrice,
@@ -161,13 +162,13 @@ class Order extends Service {
   }
 
   // 创建订单
-  async createOrder(userId, oProducts, snapOrder) {
+  async _createOrder(userId, oProducts, snapOrder) {
     const { ctx } = this
     const transaction = await ctx.model.transaction() // 创建事务
     try {
       const order = {
         userId,
-        orderNo: this.generateOrderOn(),
+        orderNo: this._generateOrderOn(),
         totalPrice: snapOrder.orderPrice,
         totalCount: snapOrder.totalCount,
         snapName: snapOrder.snapName,
@@ -198,7 +199,7 @@ class Order extends Service {
   }
 
   // 生成订单编号
-  generateOrderOn() {
+  _generateOrderOn() {
     const yCode = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ]
     const date = new Date()
     const currentYear = 2020

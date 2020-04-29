@@ -38,8 +38,8 @@
 
 const ExceptionTypes = {
   SERVER: { status: 500, code: 999, msg: '服务器内部错误' },
-  PARAMETER_ERROR: { status: 400, code: 10000, msg: '参数错误' },
-  RESOURCE_NOT_FOUND: { status: 404, code: 10001, msg: '资源未找到' },
+  PARAMETER_ERROR: { status: 200, code: 10000, msg: '参数错误' },
+  RESOURCE_NOT_FOUND: { status: 200, code: 10001, msg: '资源未找到' },
   UNAUTHORIZED: { status: 200, code: 10002, msg: '未授权' },
   ATTEMPT_ILLEGAL_OPERATE: { status: 200, code: 10003, msg: '尝试非法操作' },
   AUTHORIZATION_TOKEN_GENERATE_ERROR: { status: 200, code: 10004, msg: '授权失败, 令牌生成异常' },
@@ -57,7 +57,6 @@ const ExceptionTypes = {
   THEME_NOT_FOUND: { status: 200, code: 30000, msg: '专题不存在' },
 
   BANNER_NOT_FOUND: { status: 200, code: 40000, msg: '幻灯片不存在' },
-  BANNER_HOME_TOP_NOT_FOUND: { status: 200, code: 40000, msg: '首页顶部幻灯片不存在' },
 
   CATEGORY_NOT_FOUND: { status: 200, code: 50000, msg: '商品类目不存在' },
 
@@ -71,10 +70,9 @@ const ExceptionTypes = {
 
   ORDER_NOT_FOUND: { status: 200, code: 80000, msg: '订单不存在' },
   ORDER_PRODUCT_NOT_FOUND: { status: 200, code: 80001, msg: '下单失败，订单中的商品不存在，可能已被删除' },
-  ORDER_PRODUCT_Already_PUTAWAY: { status: 200, code: 80002, msg: '下单失败，订单中的商品已下架' },
-  ORDER_ERROR_NOT_FOUND_USER_ADDRESS: { status: 200, code: 80003, msg: '下单失败，用户地址找不到' },
-  ORDER_ERROR_PRODUCT_STOCK_INSUFFICIENT: { status: 200, code: 80004, msg: '下单失败，商品库存不足' },
-  ORDER_NONPAYMENT_ATTEMPT_DELIVER_GOODS: { status: 200, code: 80005, msg: '订单还未支付，却尝试发货' },
+  ORDER_ERROR_NOT_FOUND_USER_ADDRESS: { status: 200, code: 80002, msg: '下单失败，用户地址找不到' },
+  ORDER_ERROR_PRODUCT_STOCK_INSUFFICIENT: { status: 200, code: 80003, msg: '下单失败，商品库存不足' },
+  ORDER_NONPAYMENT_ATTEMPT_DELIVER_GOODS: { status: 200, code: 80004, msg: '订单还未支付，却尝试发货' },
   ORDER_ALREADY_PAID: { status: 200, code: 80006, msg: '订单已支付过' }
 }
 

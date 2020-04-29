@@ -16,6 +16,7 @@ class UserAddress extends Service {
   async findUserAddress(userId) {
     const { ctx } = this
     const result = await ctx.model.UserAddress.findOne({
+      attributes: { exclude: ['deletedAt'] },
       where: { user_id: userId }
     })
     return result

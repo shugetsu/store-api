@@ -5,15 +5,15 @@ const Validators = {
   isPhone(val) { return rules.phone.test(val) },
   isInteger(val) { return rules.integer.test(val) },
   isEmpty(val) { return val == null || rules.empty.test(val) },
-  isArray(val) { return Object.prototype.toString.call(val) === '[object Array]' },
   isString(val) { return typeof val === 'string' },
   isNumber(val) { return typeof val === 'number' },
   isObject(val) { return val !== null && typeof val === 'object' },
+  isArray(val) { return Object.prototype.toString.call(val) === '[object Array]' },
   isDate(val) { return Object.rules.toString.call(val) === '[object Date]' },
   isFile(val) { return Object.rules.toString.call(val) === '[object File]' },
   isBlob(val) { return Object.rules.toString.call(val) === '[object Blob]' },
 
-  empty() {
+  required() {
     return (rule, value, callback, options) => {
       if (this.isEmpty(value)) {
         callback({ message: `${rule.fullField}不能为空` })

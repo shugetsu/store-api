@@ -21,6 +21,8 @@ class OrderController extends Controller {
    * @url /api/client/v1/order/getOrderList
    * @method GET
    * @header token
+   * @params page
+   * @params size
    */
   async getOrderList() {
     const { ctx } = this
