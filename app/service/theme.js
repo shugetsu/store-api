@@ -24,8 +24,8 @@ class Theme extends Service {
     return themeAll
   }
 
-  // 查询专题详情
-  async findThemeDetail(themeId) {
+  // 根据专题id查找
+  async findByThemeId(themeId) {
     const { ctx } = this
     const theme = await ctx.model.Theme.findByPk(themeId, {
       attributes: { exclude: ['deletedAt'] },

@@ -1,5 +1,5 @@
 const Controller = require('egg').Controller
-const userAddressRules = require('../../../utils/user_address_rules')
+const userAddressRule = require('../../../rules/user_address_rule')
 
 class UserAddressController extends Controller {
 
@@ -12,7 +12,7 @@ class UserAddressController extends Controller {
   async getUserAddress() {
     const { ctx } = this
     const userId = ctx.helper.getUserId()
-    const result = await ctx.service.userAddress.findUserAddress(userId)
+    const result = await ctx.service.userAddress.findAddressByUserId(userId)
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.USER_ADDERSS_NOT_FOUND)
     }
@@ -28,7 +28,7 @@ class UserAddressController extends Controller {
   async addUserAddress() {
     const { ctx } = this
     const userId = ctx.helper.getUserId()
-    const { name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRules.create)
+    const { name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRule.create)
     const result = await ctx.service.userAddress.createAddress({ name, mobile, province, city, country, detail, userId })
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.ADD_ADDERSS_ERROR)
@@ -45,7 +45,7 @@ class UserAddressController extends Controller {
   async updateUserAddress() {
     const { ctx } = this
     const userId = ctx.helper.getUserId()
-    const { id, name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRules.update)
+    const { id, name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRule.update)
     const result = await ctx.service.userAddress.updateUserAddress({ id, name, mobile, province, city, country, detail, userId })
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.UPDATE_ADDERSS_ERROR)

@@ -8,29 +8,13 @@ class Product extends Service {
     const productList = await ctx.model.Product.findAll({
       attributes: { exclude: ['deletedAt'] },
       order: [['created_at', 'DESC']],
-      limit: parseInt(count)
+      limit: count
     })
     return productList
   }
 
-  // 查询分类商品
-  async findByCategoryId(categoryId) {
-    const { ctx } = this
-    const category = await ctx.model.Category.findByPk(categoryId)
-    if (category) {
-      const categoryProductList = await ctx.model.Product.findAll({
-        attributes: { exclude: ['deletedAt'] },
-        where: {
-          category_id: categoryId,
-        },
-      })
-      return categoryProductList
-    }
-    return null
-  }
-
-  // 查询商品详情
-  async findProductDetail(productId) {
+  // 根据商品id查找
+  async findByProductId(productId) {
     const { ctx } = this
     const productDetail = await ctx.model.Product.findByPk(productId, {
       include: [

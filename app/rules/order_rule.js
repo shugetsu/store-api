@@ -1,5 +1,5 @@
 
-const valid = require('./valid')
+const valid = require('../utils/valid')
 
 const rules = {
   addressId: [{ validator: valid.required() }, { validator: valid.integer() }],

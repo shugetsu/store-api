@@ -1,6 +1,6 @@
 const Controller = require('egg').Controller
-const orderRules = require('../../../utils/order_rules')
-const pagingRules = require('../../../utils/paging_rules')
+const orderRule = require('../../../rules/order_rule')
+const pagingRule = require('../../../rules/paging_rule')
 
 class OrderController extends Controller {
 
@@ -12,11 +12,12 @@ class OrderController extends Controller {
    */
   async placeOrder() {
     const { ctx } = this
-    const { addressId, products } = await ctx.validate(ctx.request.body, orderRules)
+    const { addressId, products } = await ctx.validate(ctx.request.body, orderRule)
     const userId = ctx.helper.getUserId()
     const result = await ctx.service.order.placeOrder(userId, addressId, products)
     ctx.successResponse(result)
   }
+
   /**
    * 获取订单列表
    * @url /api/client/v1/order/getOrderList
@@ -27,7 +28,7 @@ class OrderController extends Controller {
    */
   async getOrderList() {
     const { ctx } = this
-    const { page, size } = await ctx.validate(ctx.request.query, pagingRules)
+    const { page, size } = await ctx.validate(ctx.request.query, pagingRule)
     const userId = ctx.helper.getUserId()
     const result = await ctx.service.order.findOrderList(userId, parseInt(page), parseInt(size))
     ctx.successResponse(result)

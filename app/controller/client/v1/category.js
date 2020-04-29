@@ -12,7 +12,6 @@ class ThemeController extends Controller {
     const result = await ctx.service.category.findProductCategoryList()
     ctx.successResponse(result)
   }
-
 }
 
 module.exports = ThemeController;

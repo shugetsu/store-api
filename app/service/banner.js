@@ -1,10 +1,10 @@
 const Service = require('egg').Service
 
 class BannerService extends Service {
-
-  async findByBannerId(id) {
+  // 查询幻灯片
+  async findByBannerId(bannerId) {
     const { ctx } = this
-    const banner = await ctx.model.Banner.findByPk(id, {
+    const banner = await ctx.model.Banner.findByPk(bannerId, {
       attributes: { exclude: ['deletedAt'] },
       include: {
         model: ctx.model.BannerItem,

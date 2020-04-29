@@ -25,7 +25,7 @@ class ThemeController extends Controller {
     const { id } = await ctx.validate(ctx.query, {
       id: [{ validator: valid.required() }, { validator: valid.integer() }]
     })
-    const result = await ctx.service.theme.findThemeDetail(id)
+    const result = await ctx.service.theme.findByThemeId(id)
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.THEME_NOT_FOUND)
     }

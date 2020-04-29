@@ -1,13 +1,11 @@
 
-const rules = require('./rules')
-
-const Validators = {
-  isPhone(val) { return rules.phone.test(val) },
-  isInteger(val) { return rules.integer.test(val) },
-  isEmpty(val) { return val == null || rules.empty.test(val) },
+const valid = {
+  isPhone(val) { return /^1[3|4|5|7|8][0-9]\d{8}$/.test(val) },
+  isInteger(val) { return /^[0-9]+$/.test(val) },
+  isEmpty(val) { return val == null || /^\s*$/.test(val) },
   isString(val) { return typeof val === 'string' },
   isNumber(val) { return typeof val === 'number' },
-  isObject(val) { return val !== null && typeof val === 'object' },
+  isObject(val) { return val != null && typeof val === 'object' },
   isArray(val) { return Object.prototype.toString.call(val) === '[object Array]' },
   isDate(val) { return Object.rules.toString.call(val) === '[object Date]' },
   isFile(val) { return Object.rules.toString.call(val) === '[object File]' },
@@ -44,4 +42,4 @@ const Validators = {
   }
 }
 
-module.exports = Validators
+module.exports = valid

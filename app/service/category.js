@@ -4,7 +4,7 @@ class Category extends Service {
 
   // 查询商品分类列表
   async findProductCategoryList() {
-    const { ctx } = this;
+    const { ctx } = this
     const productCategoryList = await ctx.model.Category.findAll({
       attributes: { exclude: ['deletedAt'] },
       include: [
