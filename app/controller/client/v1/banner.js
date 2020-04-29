@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller
+const valid = require('../../../utils/valid')
 
 class BannerController extends Controller {
   /**
@@ -10,7 +11,7 @@ class BannerController extends Controller {
   async getBannerById() {
     const { ctx } = this
     const { id } = await ctx.validate(ctx.query, {
-      id: [{ required: true, message: 'id不能为空' }, { message: 'id必须是正整数', pattern: /^[0-9]+$/ }]
+      id: [{ validator: valid.empty() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.banner.findByBannerId(id)
     if (!result) {

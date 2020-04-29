@@ -1,7 +1,7 @@
 
 const valid = require('./valid')
 
-const pagingRules = {
+const rules = {
   page: {
     validator(rule, value, callback, options) {
       if (valid.isEmpty(value)) {
@@ -26,4 +26,4 @@ const pagingRules = {
   }
 }
 
-module.exports = pagingRules
+module.exports = rules

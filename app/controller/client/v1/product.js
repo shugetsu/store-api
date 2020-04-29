@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller
+const valid = require('../../../utils/valid')
 
 class ProductController extends Controller {
 
@@ -11,7 +12,7 @@ class ProductController extends Controller {
   async getNewProductList() {
     const { ctx } = this
     const { count } = await ctx.validate(ctx.query, {
-      count: [{ required: true, message: 'count不能为空' }, { message: 'count必须是正整数', pattern: /^[0-9]+$/ }]
+      count: [{ validator: valid.empty() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.product.findNewProductList(count)
     ctx.successResponse(result)
@@ -26,7 +27,7 @@ class ProductController extends Controller {
   async getProductDetail() {
     const { ctx } = this
     const { id } = await ctx.validate(ctx.query, {
-      id: [{ required: true, message: 'id不能为空' }, { message: 'id必须是正整数', pattern: /^[0-9]+$/ }]
+      id: [{ validator: valid.empty() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.product.findProductDetail(id)
     if (!result) {

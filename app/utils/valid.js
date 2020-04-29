@@ -16,9 +16,9 @@ const Validators = {
   empty() {
     return (rule, value, callback, options) => {
       if (this.isEmpty(value)) {
-        callback()
-      } else {
         callback({ message: `${rule.fullField}不能为空` })
+      } else {
+        callback()
       }
     }
   },

@@ -1,10 +1,8 @@
 
 const valid = require('./valid')
 
-const placeRules = {
-  addressId: {
-    validator: valid.integer()
-  },
+const rules = {
+  addressId: [{ validator: valid.empty() }, { validator: valid.integer() }],
   products: {
     validator(rule, value, callback, options) {
       if (valid.isEmpty(value)) {
@@ -42,4 +40,4 @@ const placeRules = {
   }
 }
 
-module.exports = placeRules
+module.exports = rules

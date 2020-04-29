@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller
+const valid = require('../../../utils/valid')
 
 class ThemeController extends Controller {
 
@@ -22,7 +23,7 @@ class ThemeController extends Controller {
   async getThemeDetail() {
     const { ctx } = this
     const { id } = await ctx.validate(ctx.query, {
-      id: [{ required: true, message: 'id不能为空' }, { message: 'id必须是正整数', pattern: /^[0-9]+$/ }]
+      id: [{ validator: valid.empty() }, { validator: valid.integer() }]
     })
     const result = await ctx.service.theme.findThemeDetail(id)
     if (!result) {

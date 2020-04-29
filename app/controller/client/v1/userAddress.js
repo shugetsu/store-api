@@ -1,6 +1,7 @@
 const Controller = require('egg').Controller
+const userAddressRules = require('../../../utils/user_address_rules')
 
-class AddressController extends Controller {
+class UserAddressController extends Controller {
 
   /**
    * 获取用户地址
@@ -27,14 +28,7 @@ class AddressController extends Controller {
   async addUserAddress() {
     const { ctx } = this
     const userId = ctx.helper.getUserId()
-    const { name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, {
-      name: [{ required: true, message: 'name不能为空' }],
-      mobile: [{ required: true, message: 'mobile不能为空' }],
-      province: [{ required: true, message: 'province不能为空' }],
-      city: [{ required: true, message: 'city不能为空' }],
-      country: [{ required: true, message: 'country不能为空' }],
-      detail: [{ required: true, message: 'detail不能为空' }]
-    })
+    const { name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRules.create)
     const result = await ctx.service.userAddress.createAddress({ name, mobile, province, city, country, detail, userId })
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.ADD_ADDERSS_ERROR)
@@ -51,15 +45,7 @@ class AddressController extends Controller {
   async updateUserAddress() {
     const { ctx } = this
     const userId = ctx.helper.getUserId()
-    const { id, name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, {
-      id: [{ required: true, message: 'id不能为空' }, { message: 'id必须是正整数', pattern: /^[0-9]+$/ }],
-      name: [{ required: true, message: 'name不能为空' }],
-      mobile: [{ required: true, message: 'mobile不能为空' }],
-      province: [{ required: true, message: 'province不能为空' }],
-      city: [{ required: true, message: 'city不能为空' }],
-      country: [{ required: true, message: 'country不能为空' }],
-      detail: [{ required: true, message: 'detail不能为空' }]
-    })
+    const { id, name, mobile, province, city, country, detail } = await ctx.validate(ctx.request.body, userAddressRules.update)
     const result = await ctx.service.userAddress.updateUserAddress({ id, name, mobile, province, city, country, detail, userId })
     if (!result) {
       ctx.throwException(ctx.ExceptionTypes.UPDATE_ADDERSS_ERROR)
@@ -68,4 +54,4 @@ class AddressController extends Controller {
   }
 }
 
-module.exports = AddressController
+module.exports = UserAddressController
