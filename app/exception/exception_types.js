@@ -18,7 +18,7 @@ const ExceptionTypes = {
   ATTEMPT_ILLEGAL_OPERATE: { status: 200, code: 10003, msg: '尝试非法操作' },
   AUTHORIZATION_TOKEN_GENERATE_ERROR: { status: 200, code: 10004, msg: '授权失败, 令牌生成异常' },
   AUTHORIZATION_CACHE_ERROR: { status: 200, code: 10005, msg: '授权失败, 服务器缓存异常' },
-  AUTHORIZATION_THIRD_PARTY_LOGIN_ERROR: { status: 200, code: 10006, msg: '授权失败, 第三方应用账号登录失败' },
+  AUTHORIZATION_ACCOUNT_ERROR: { status: 200, code: 10006, msg: '授权失败, 账号或密码错误' },
   AUTHORIZATION_ADD_USER_ERROR: { status: 200, code: 10007, msg: '授权失败, 添加用户失败' },
   AUTHORIZATION_USER_DATA_DECODE_ERROR: { status: 200, code: 10007, msg: '授权失败, 用户数据解密错误' },
   AUTHORIZATION_TOKEN_EXPIRE: { status: 200, code: 10008, msg: '认证失败, 令牌已过期' },
@@ -26,6 +26,7 @@ const ExceptionTypes = {
   AUTHORIZATION_TOKEN_LOSE_EFFICACY: { status: 200, code: 10010, msg: '认证失败, 令牌已失效' },
   INSUFFICIENT_PERMISSION: { status: 200, code: 10011, msg: '权限不足' },
   WECHAT_SERVICE_INTERFACE_ERROR: { status: 200, code: 10012, msg: '微信服务接口调用失败' },
+  CAPTCHA_ERROR: { status: 200, code: 10013, msg: '验证码错误' },
 
   PRODUCT_NOT_FOUND: { status: 200, code: 20000, msg: '商品不存在' },
   THEME_NOT_FOUND: { status: 200, code: 30000, msg: '专题不存在' },

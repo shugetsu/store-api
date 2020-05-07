@@ -30,10 +30,10 @@ const rules = {
               }
             }
           } else {
-            callback({ message: '商品不能为空' })
+            callback({ message: '商品不能少于一个' })
           }
         } else {
-          callback({ message: `${rule.fullField}必须是数组` })
+          callback({ message: 'products必须是数组' })
         }
       }
     }

@@ -23,7 +23,7 @@ const valid = {
 
   integer() {
     return (rule, value, callback, options) => {
-      if (this.isInteger(value)) {
+      if (this.isInteger(value) || this.isEmpty(value)) {
         callback()
       } else {
         callback({ message: `${rule.fullField}必须是正整数` })

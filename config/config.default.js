@@ -26,19 +26,21 @@ module.exports = appInfo => {
   config.security = {
     csrf: {
       enable: false
-    }
+    },
+    domainWhiteList: []
   }
 
   // 配置静态目录
   config.static = {
     prefix: '/resource',
-    dir: path.join(appInfo.baseDir, 'app/public'),
+    dir: path.join(appInfo.baseDir, 'app/public')
   }
 
   // 设置跨域请求
   config.cors = {
-    origin: '*',
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+    origin: (ctx) => ctx.request.header.origin,
+    credentials: true,
+    allowMethods: 'GET, HEAD, PUT, POST, DELETE, PATCH, OPTIONS'
   }
 
   // sequelize 配置

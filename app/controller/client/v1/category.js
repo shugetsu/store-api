@@ -3,7 +3,7 @@ const Controller = require('egg').Controller
 class ThemeController extends Controller {
 
   /**
-   * 获取商品分类
+   * 获取商品分类列表
    * @url /api/client/v1/category/getProductCategoryList
    * @method GET
    */

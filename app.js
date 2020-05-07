@@ -15,4 +15,18 @@ module.exports = app => {
     ADMIN: 32
   }
 
+  // app.use(async (ctx, next) => {
+  //   ctx.set('Access-Control-Allow-Origin', ctx.request.header.origin)
+  //   ctx.set('Access-Control-Allow-Credentials', true)
+  //   ctx.set('Access-Control-Allow-Methods', 'GET, HEAD, PUT, POST, DELETE, PATCH, OPTIONS')
+  //   ctx.set('Access-Control-Allow-Headers', 'x-requested-with,content-type')
+  //   await next()
+  // })
+
+  // app.use(async (ctx, next) => {
+  //   if (ctx.method === 'OPTIONS') {
+  //     ctx.set('Access-Control-Max-Age', 3600 * 24)
+  //   }
+  //   await next()
+  // })
 }

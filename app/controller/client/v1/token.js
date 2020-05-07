@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller
+const valid = require('../../../utils/valid')
 
 class TokenController extends Controller {
 
@@ -10,7 +11,7 @@ class TokenController extends Controller {
 
   async getToken() {
     const { ctx } = this
-    const { code } = await ctx.validate(ctx.request.query, { code: { required: true, message: 'code不能为空' } })
+    const { code } = await ctx.validate(ctx.request.query, { code: { validator: valid.required() } })
     const result = await ctx.service.token.getToken(code)
     ctx.successResponse(result)
   }

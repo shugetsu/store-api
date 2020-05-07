@@ -2,6 +2,7 @@ const Service = require('egg').Service
 
 
 class Token extends Service {
+
   // 获取token
   async getToken(code) {
     const { app } = this

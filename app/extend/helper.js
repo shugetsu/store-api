@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const path = require('path')
+const svgCaptcha = require('svg-captcha')
+
+// 自定svg-captcha字体
+svgCaptcha.loadFont(path.join(__dirname, '../public/fonts/Clarion.ttf'))
 
 module.exports = {
   // 验证权限
@@ -8,7 +12,6 @@ module.exports = {
     const { ctx } = this
     if (token) {
       const tokenContent = this.verifyToken(token)
-      console.log(tokenContent)
       if (tokenContent) {
         const currentTime = Math.floor(Date.now() / 1000)
         if (tokenContent.expires >= currentTime) {
@@ -54,6 +57,21 @@ module.exports = {
     } catch (err) {
       ctx.throwException(ctx.ExceptionTypes.AUTHORIZATION_TOKEN_GENERATE_ERROR)
     }
+  },
+  // 创建验证码 更多配置参考：https://github.com/produck/svg-captcha/blob/1.x/README_CN.md
+  async createCaptcha(width, height) {
+    const { ctx } = this
+    const option = { size: 4, fontSize: 30, width: width || 80, height: height || 40, background: '#fafbfc', noise: 3, ignoreChars: '0o1i' }
+    const captcha = svgCaptcha.create(option)
+    ctx.session.captcha = captcha.text
+    return captcha
+  },
+  // 检验验证码
+  checkCaptcha(captcha) {
+    const { ctx } = this
+    const sessionCaptcha = ctx.session.captcha ? ctx.session.captcha.toLowerCase() : ''
+    ctx.session.captcha = null
+    return sessionCaptcha === captcha.toLowerCase()
   },
   // 获取用户id
   getUserId() {

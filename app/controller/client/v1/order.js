@@ -9,6 +9,8 @@ class OrderController extends Controller {
    * @url /api/client/v1/order/placeOrder
    * @method POST
    * @header token
+   * @params addressId 地址id
+   * @params products 商品列表 [{ productId: 1, count: 1 }, { productId: 2, count: 1 }, ...]
    */
   async placeOrder() {
     const { ctx } = this
