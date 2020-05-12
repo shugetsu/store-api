@@ -12,6 +12,7 @@ module.exports = app => {
 
   // product
   router.get('/api/client/v1/product/getNewProductList', v1.product.getNewProductList)
+  router.get('/api/client/v1/product/getProductDetail', v1.product.getProductDetail)
 
   // category
   router.get('/api/client/v1/category/getProductCategoryList', v1.category.getProductCategoryList)
